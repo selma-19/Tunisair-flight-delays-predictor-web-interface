@@ -1,0 +1,44 @@
+<div
+  class="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+  style="background-image: url('/assets/Tunisair.jpg');"
+>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative bg-white/10 backdrop-blur-sm rounded-xl p-8 mx-4 w-full max-w-2xl">
+    <div class="space-y-6">
+      <h1 class="text-5xl font-bold text-white text-center">Tunisair Delay Predictor</h1>
+      <p class="text-lg text-white/90 text-center leading-relaxed">
+        Entrez le numéro de vol Tunisair et obtenez une prédiction précise du retard.<br>
+        Grâce à l'analyse avancée des données et à l'intelligence artificielle,<br>
+        anticipez les retards et planifiez votre voyage en toute sérénité.
+      </p>
+
+      <div class="mt-8 space-y-4">
+        <div class="flex items-center justify-center gap-2">
+          <input
+            id="flightSearch"
+            type="text"
+            [(ngModel)]="flightNumber"
+            class="w-full max-w-md px-6 py-4 rounded-lg border border-white/20 bg-white/5 text-white placeholder-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            placeholder="Recherche par numéro..."
+          />
+          <button
+            (click)="searchFlight()"
+            class="px-6 py-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+          >
+            Rechercher
+          </button>
+        </div>
+
+        @if (errorMessage) {
+          <p class="text-red-500 text-center">{{ errorMessage }}</p>
+        }
+
+        @if (prediction) {
+          <p class="text-white text-center text-xl">
+            Retard estimé: {{ prediction }} minutes
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
