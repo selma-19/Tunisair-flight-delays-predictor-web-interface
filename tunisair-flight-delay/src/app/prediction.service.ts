@@ -11,8 +11,12 @@ export class PredictionService {
 
   constructor(private http: HttpClient) {}
 
-  predict(flightId: string): Observable<any> {
-    const body = { flightId };
+  predict(flightId: string, flightDate: string): Observable<any> {
+    const formattedDate = new Date(flightDate).toISOString().split('T')[0];
+    const body = {
+      flightId,
+      flightDate: formattedDate
+    };
     return this.http.post<any>(this.apiUrl, body);
   }
 }
